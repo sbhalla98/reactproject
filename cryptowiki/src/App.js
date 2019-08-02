@@ -8,7 +8,7 @@ import c2 from './cryptocurrency.jpg';
 import c3 from './images.jpeg';
 import Background from './Background.js';
 import Cards from './cards.js';
-
+import {Modal , ModalBody, Button} from 'reactstrap';
 class App extends Component {
 
   constructor(){
@@ -34,9 +34,11 @@ class App extends Component {
       alexaRank:null,
       details : null,
       homepage:null,
-      symbol:null
+      symbol:null,
+      modal:false
     }
     this.infoHandler=this.infoHandler.bind(this);
+    this.toggle=this.toggle.bind(this);
   }
 
 // method call for displaying clientInformation
@@ -63,6 +65,11 @@ async componentDidMount(){
   const res = await fetch("https://api.coingecko.com/api/v3/coins/list");
   const data = await res.json();
   this.setState({ hideloader:true,coinlist : data});
+}
+toggle() {
+  this.setState(prevState => ({
+    modal: !prevState.modal
+  }));
 }
 
 render(){
@@ -111,7 +118,7 @@ render(){
       {/* first division of panel */}
       
       <div className="coinImage img-fluid rounded mx-auto d-block">
-      <img src ={url} style={{width : '100%'}} alt={title}/>
+      <img src ={url} style={{width : '100%'}} onClick={this.toggle} alt={title}/>
       </div>
 
           <div className="coinDetail">
@@ -169,6 +176,16 @@ render(){
   
     </div>
     </div>
+    <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+          
+          <ModalBody>
+          <button className="btn btn-danger align-right" style={{float:'right'}} onClick={this.toggle}>X</button>
+          <img src ={url} style={{width : '100%'}}  alt={title}/>
+          <div><a style={{color:'black',fontWeight:'bold'}} href={homepageurl}>{title} - {symbol}</a></div>
+
+          </ModalBody>
+        
+        </Modal>
   
      </div>
    );
