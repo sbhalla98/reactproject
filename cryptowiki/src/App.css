@@ -9,13 +9,12 @@
 *{
   box-sizing: border-box;
 }
-/* .main{
-  position: relative;
-} */
+
 body{
   margin: 0 !important;
   background-color: whitesmoke;
 }
+
 .label{
   font-family : 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   text-align:center;
@@ -24,52 +23,65 @@ body{
 .panelTitle{
   width:100%;
   text-align: center;
-  background-color:#81d4fa;
-  font-size:25px;
+  background-color:#3d5afe;
+  font-size:30px;
   font-weight: bold;
+  height: 50px;
+  color:white;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
-
+.container{
+  width:90% !important;
+  box-shadow:  0 4px 8px 0 #e0e0e0, 0 6px 20px 0 #bbdefb;
+}
  .coinImage{
-
+  margin-top:1%;
   height: 300px;
   width: 300px;
+  box-shadow:  0 4px 8px 0 #e0e0e0, 0 6px 20px 0 #bbdefb;
 }
-
-.container1{
-  border:1px solid black;
+.info{
+font-family: serif;
 }
-.card{
+.deatailabel{
+  font-weight: bold;
+  font-family: sans-serif;
+}
+.card1{
   z-index: -1;
   margin:1%;
-  height: 80px;
+  height: 100px;
   padding:1%;
+  border-radius: 0px !important;
+  background-color:#b3e5fc;
   padding-top: 2% !important;
   text-align: center;
   box-shadow:  0 4px 8px 0 rgba(180,180 ,180, 0.2), 0 6px 20px 0 rgba(180,180,180, 0.19);
 }
 .description{
-  width:75%;
-  float:left;
+
   padding: 2%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .coinDetail{
-
-  width:20%;
-  float: left;
+  padding: 2%;
 }
+
 html, body {
-  margin: 0 !important;
+  margin: 0 10 0 0 !important;
   overflow-x: hidden;
   height: 100%;
   width: 100%;
+  margin-bottom: 2% ;
   padding: 0px !important;
 }
 a{
   text-decoration: none;
-  color: black;
+  color: white;
 }
-@media screen and (max-width: 600px) {
+ @media screen and (max-width: 600px) {
   .loader{
       width:80% !important ;
       position: relative;
@@ -78,14 +90,7 @@ a{
       font-size:20px;
     }
 }
-@media only screen and (max-width: 480px), only screen and (max-device-width: 480px) {
-  .panelLeft{
-    overflow-x: scroll;
-      }
-    body{
-        margin:0;
-    }
-}
+
 .lowerHeader{
   margin-top:100px;
 }
