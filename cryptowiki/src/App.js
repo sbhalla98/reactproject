@@ -8,7 +8,7 @@ import c2 from './cryptocurrency.jpg';
 import c3 from './images.jpeg';
 import Background from './Background.js';
 import Cards from './cards.js';
-import {Modal , ModalBody, Button} from 'reactstrap';
+import {Modal , ModalBody} from 'reactstrap';
 class App extends Component {
 
   constructor(){
@@ -35,7 +35,9 @@ class App extends Component {
       details : null,
       homepage:null,
       symbol:null,
-      modal:false
+      modal:false,
+      coinlistName:[],
+   
     }
     this.infoHandler=this.infoHandler.bind(this);
     this.toggle=this.toggle.bind(this);
@@ -45,6 +47,17 @@ class App extends Component {
 // calling specifying api depending upon id
 async infoHandler(x){
   var id = x.toLowerCase();
+  var listhas=false;
+  this.state.coinlistName.forEach(function(value,index){
+    if(id === value){
+      listhas = true;
+    }
+  })
+  if(x === '' || listhas===false){
+    alert('Invalid Search....');
+  }
+  else{
+ 
   const coinsList = this.state.coinlist;
   var search;
   coinsList.forEach(function(value,index){
@@ -54,8 +67,8 @@ async infoHandler(x){
   });
   const res = await fetch("https://api.coingecko.com/api/v3/coins/"+search);
   const data = await res.json();
-  console.log(data);
   this.setState({searchlabel : true,title: data.name,symbol: data.symbol,url : data.image.large,container:true,container1:false,countryOrigin: data.country_origin,score: data.developer_score,communityScore: data.community_score,liquidityScore: data.liquidity_score,publicInterestScore: data.public_interest_score,cgRank: data.coingecko_rank,cgScore:data.coingecko_score,capRank: data.market_data.market_cap_rank, date : data.genesis_date, details: data.description.en,homepage: data.links.subreddit_url,alexaRank: data.public_interest_stats.alexa_rank});
+}
 }
 
 
@@ -64,7 +77,12 @@ async infoHandler(x){
 async componentDidMount(){
   const res = await fetch("https://api.coingecko.com/api/v3/coins/list");
   const data = await res.json();
-  this.setState({ hideloader:true,coinlist : data});
+  var coin = this.state.coinlistName;
+  data.map(function(value,item){
+    return coin.push(value.id);
+  })
+  console.log(coin);
+  this.setState({ hideloader:true,coinlist : data,coinlistName:coin});
 }
 toggle() {
   this.setState(prevState => ({
@@ -92,7 +110,7 @@ render(){
   var homepageurl = this.state.homepage;
   var symbol = this.state.symbol;
   var alexaRank= this.state.alexaRank;
-  var x="b.jpg";
+ 
     return (
     <div className="main" >
        {/* page title */}
@@ -106,7 +124,7 @@ render(){
        <Background logo={logo}/>
       
       </div>
-      <div className="row" style={{marginTop:'5%'}}>
+      <div className="row" style={{marginTop:'2%'}}>
        <Cards logo={logo} c3={c3} c1={c1} c2={c2}></Cards>
        </div>
 
@@ -116,7 +134,6 @@ render(){
      <div className="panelTitle"><a href={homepageurl}>{title} - {symbol}</a></div>
     
       {/* first division of panel */}
-      
       <div className="coinImage img-fluid rounded mx-auto d-block">
       <img src ={url} style={{width : '100%'}} onClick={this.toggle} alt={title}/>
       </div>
@@ -185,7 +202,7 @@ render(){
 
           </ModalBody>
         
-        </Modal>
+    </Modal>
   
      </div>
    );
