@@ -1,13 +1,13 @@
 import React,{Component} from 'react';
 import './App.css';
-import Form from './Form.js';
-import Header from './Header.js'
-import logo from './logo.jpeg';
-import c1 from './b.jpg';
-import c2 from './cryptocurrency.jpg';
-import c3 from './images.jpeg';
-import Background from './Background.js';
-import Cards from './cards.js';
+import Form from '../Form/Form.js';
+import Header from '../Header/Header.js'
+import logo from '../../Images/logo.jpeg';
+import c1 from '../../Images/b.jpg';
+import c2 from '../../Images/cryptocurrency.jpg';
+import c3 from '../../Images/images.jpeg';
+import Background from '../Background/Background.js';
+import Cards from '../Card/cards.js';
 import {Modal , ModalBody} from 'reactstrap';
 class App extends Component {
 

@@ -5,7 +5,7 @@ import './Header.css';
 const Header = function(){
   return (
       <div className="header">
-      <h3>Crypto Wiki</h3>
+        <h3>Crypto Wiki</h3>
       </div>
   
   );
